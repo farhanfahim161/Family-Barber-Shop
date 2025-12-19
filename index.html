@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gino's Family Barber Shop | Mantua, NJ | Classic Cuts Since Day One</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            background: #f5f1e8;
+            color: #2c2416;
+            overflow-x: hidden;
+        }
+
+        .hero {
+            position: relative;
+            height: 100vh;
+            background: linear-gradient(rgba(20, 20, 50, 0.7), rgba(139, 0, 0, 0.6)), 
+                        url('https://images.unsplash.com/photo-1503951914875-452162b0f3f1?w=1600&q=80') center/cover;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: repeating-linear-gradient(
+                0deg,
+                transparent,
+                transparent 2px,
+                rgba(255,255,255,0.03) 2px,
+                rgba(255,255,255,0.03) 4px
+            );
+            pointer-events: none;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .logo {
+            font-size: 5rem;
+            font-weight: bold;
+            color: #fff;
+            margin-bottom: 0.5rem;
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.8);
+            font-family: 'Arial Black', sans-serif;
+            letter-spacing: 2px;
+        }
+
+        .logo-subtitle {
+            font-size: 2rem;
+            color: #ff6b6b;
+            margin-bottom: 2rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
+        }
+
+        .tagline {
+            font-size: 1.3rem;
+            color: #f0f0f0;
+            margin-bottom: 2rem;
+            letter-spacing: 2px;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.6);
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 1.2rem 2.5rem;
+            background: #8b0000;
+            color: #fff;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.1rem;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(139, 0, 0, 0.4);
+            border: 2px solid #a52a2a;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(139, 0, 0, 0.6);
+            background: #a52a2a;
+        }
+
+        .cta-button.secondary {
+            background: #1e3a5f;
+            border-color: #2c5aa0;
+        }
+
+        .cta-button.secondary:hover {
+            background: #2c5aa0;
+        }
+
+        .section {
+            padding: 5rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-size: 3rem;
+            text-align: center;
+            margin-bottom: 3rem;
+            color: #8b0000;
+            font-family: 'Arial Black', sans-serif;
+            position: relative;
+            padding-bottom: 1rem;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: #1e3a5f;
+        }
+
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .gallery-item {
+            position: relative;
+            height: 250px;
+            overflow: hidden;
+            border-radius: 10px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+            transition: all 0.4s ease;
+            border: 3px solid #8b0000;
+        }
+
+        .gallery-item:hover {
+            transform: scale(1.05);
+            box-shadow: 0 12px 30px rgba(139, 0, 0, 0.4);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .service-card {
+            background: #fff;
+            padding: 2.5rem;
+            border-radius: 15px;
+            border: 3px solid #8b0000;
+            transition: all 0.4s ease;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(139, 0, 0, 0.3);
+            border-color: #a52a2a;
+        }
+
+        .service-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .service-name {
+            font-size: 1.5rem;
+            color: #8b0000;
+            margin-bottom: 1rem;
+            font-weight: bold;
+        }
+
+        .service-price {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #1e3a5f;
+            margin-bottom: 0.5rem;
+        }
+
+        .service-description {
+            color: #555;
+            line-height: 1.6;
+        }
+
+        .about {
+            background: linear-gradient(135deg, #1e3a5f 0%, #8b0000 100%);
+            color: #fff;
+        }
+
+        .about .section-title {
+            color: #fff;
+        }
+
+        .about .section-title::after {
+            background: #ff6b6b;
+        }
+
+        .about-content {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+            font-size: 1.3rem;
+            line-height: 2;
+        }
+
+        .highlight {
+            color: #ffeb3b;
+            font-weight: bold;
+        }
+
+        .hours-section {
+            background: #fff;
+        }
+
+        .hours-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-top: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .hours-item {
+            background: linear-gradient(135deg, #f5f1e8 0%, #e8dfc8 100%);
+            padding: 1.5rem;
+            border-radius: 10px;
+            border: 2px solid #8b0000;
+            text-align: center;
+        }
+
+        .day {
+            color: #8b0000;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+            font-size: 1.2rem;
+        }
+
+        .time {
+            color: #1e3a5f;
+            font-size: 1.1rem;
+            font-weight: bold;
+        }
+
+        .special-notice {
+            background: #ffeb3b;
+            color: #8b0000;
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            font-size: 1.3rem;
+            font-weight: bold;
+            border: 3px solid #8b0000;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .contact {
+            background: #2c2416;
+            color: #fff;
+        }
+
+        .contact .section-title {
+            color: #ff6b6b;
+        }
+
+        .contact .section-title::after {
+            background: #fff;
+        }
+
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            flex-wrap: wrap;
+            margin-top: 2rem;
+        }
+
+        .contact-item {
+            text-align: center;
+            padding: 2rem;
+            background: linear-gradient(135deg, #1e3a5f 0%, #8b0000 100%);
+            border-radius: 15px;
+            border: 3px solid #ff6b6b;
+            min-width: 250px;
+            transition: all 0.3s ease;
+        }
+
+        .contact-item:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 30px rgba(255, 107, 107, 0.4);
+        }
+
+        .contact-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .contact-label {
+            color: #ffeb3b;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+        }
+
+        .contact-detail {
+            color: #fff;
+            font-size: 1.2rem;
+        }
+
+        .contact-detail a {
+            color: #fff;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .contact-detail a:hover {
+            color: #ffeb3b;
+        }
+
+        .features {
+            background: #1e3a5f;
+            color: #fff;
+            text-align: center;
+            padding: 3rem 2rem;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            max-width: 1000px;
+            margin: 2rem auto 0;
+        }
+
+        .feature-item {
+            padding: 1.5rem;
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .feature-text {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #ffeb3b;
+        }
+
+        .footer {
+            background: #000;
+            text-align: center;
+            padding: 2rem;
+            color: #999;
+        }
+
+        .barber-pole {
+            display: inline-block;
+            animation: spin 3s linear infinite;
+        }
+
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        @media (max-width: 768px) {
+            .logo {
+                font-size: 3rem;
+            }
+            .logo-subtitle {
+                font-size: 1.5rem;
+            }
+            .section-title {
+                font-size: 2rem;
+            }
+            .tagline {
+                font-size: 1.1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="hero">
+        <div class="hero-content">
+            <div class="logo">GINO'S</div>
+            <div class="logo-subtitle">Family Barber Shop</div>
+            <div class="tagline">Mantua's Trusted Barbershop</div>
+            <div class="cta-buttons">
+                <a href="tel:8564151052" class="cta-button">📞 (856) 415-1052</a>
+                <a href="tel:8564682626" class="cta-button secondary">📞 (856) 468-2626</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2 class="section-title">Classic American Barbershop</h2>
+        <div class="gallery">
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1605497788044-5a32c7078486?w=600&q=80" alt="Classic Barber Chair">
+            </div>
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1599351431202-1e0f0137899a?w=600&q=80" alt="Professional Haircut">
+            </div>
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1621605815971-fbc98d665033?w=600&q=80" alt="Beard Trim">
+            </div>
+        </div>
+    </div>
+
+    <div class="section" id="services">
+        <h2 class="section-title">Our Services</h2>
+        <div class="services-grid">
+            <div class="service-card">
+                <div class="service-icon">✂️</div>
+                <div class="service-name">Men's Haircut</div>
+                <div class="service-price">$18.00</div>
+                <p class="service-description">Classic men's haircut styled to perfection. Our experienced barbers deliver quality cuts every time.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">👦</div>
+                <div class="service-name">Kids' Cut</div>
+                <div class="service-price">$15.00</div>
+                <p class="service-description">Gentle and patient haircuts for children. We make sure every kid leaves with a smile and a great cut.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">🧔</div>
+                <div class="service-name">Beard Trim</div>
+                <div class="service-price">$10.00</div>
+                <p class="service-description">Professional beard trimming and shaping to keep you looking sharp and well-groomed.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">💈</div>
+                <div class="service-name">Hair & Beard</div>
+                <div class="service-price">$21.00</div>
+                <p class="service-description">Complete grooming package combining haircut and beard trim for the full barbershop experience.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">✨</div>
+                <div class="service-name">Shape Up</div>
+                <div class="service-price">$7.00</div>
+                <p class="service-description">Quick edge-up and lineup to keep your style fresh between full haircuts.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">📅</div>
+                <div class="service-name">Appointments</div>
+                <div class="service-price">Available</div>
+                <p class="service-description">Schedule with Joe Denisi at (856) 628-5791. Walk-ins also always welcome!</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="features">
+        <div class="features-grid">
+            <div class="feature-item">
+                <div class="feature-icon">🚶</div>
+                <div class="feature-text">Walk-Ins Welcome</div>
+            </div>
+            <div class="feature-item">
+                <div class="feature-icon">👥</div>
+                <div class="feature-text">Two Barbers<br>No Waiting</div>
+            </div>
+            <div class="feature-item">
+                <div class="feature-icon">🏧</div>
+                <div class="feature-text">ATM On Site</div>
+            </div>
+            <div class="feature-item">
+                <div class="feature-icon">💵</div>
+                <div class="feature-text">Cash Only</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="section about" id="about">
+        <h2 class="section-title">About Gino's</h2>
+        <div class="about-content">
+            <p>Welcome to <span class="highlight">Gino's Family Barber Shop</span>, your neighborhood destination for quality haircuts and traditional barbering in Mantua, New Jersey.</p>
+            <p style="margin-top: 1.5rem;">We're a family-run establishment that believes in honest work, fair prices, and treating every customer like family. With two experienced barbers on staff, you'll never wait long for a great cut.</p>
+            <p style="margin-top: 1.5rem;">Located conveniently across from Tractor Supply on Bridgeton Pike, we're here to serve the community with the kind of classic barbershop experience that never goes out of style.</p>
+        </div>
+    </div>
+
+    <div class="section hours-section" id="hours">
+        <h2 class="section-title">Hours of Operation</h2>
+        <div class="hours-grid">
+            <div class="hours-item">
+                <div class="day">Sunday</div>
+                <div class="time">CLOSED</div>
+            </div>
+            <div class="hours-item">
+                <div class="day">Monday</div>
+                <div class="time">CLOSED</div>
+            </div>
+            <div class="hours-item">
+                <div class="day">Tuesday</div>
+                <div class="time">8:30 AM - 6:00 PM</div>
+            </div>
+            <div class="hours-item">
+                <div class="day">Wednesday</div>
+                <div class="time">8:30 AM - 6:00 PM</div>
+            </div>
+            <div class="hours-item">
+                <div class="day">Thursday</div>
+                <div class="time">8:30 AM - 6:00 PM</div>
+            </div>
+            <div class="hours-item">
+                <div class="day">Friday</div>
+                <div class="time">8:30 AM - 6:00 PM</div>
+            </div>
+            <div class="hours-item">
+                <div class="day">Saturday</div>
+                <div class="time">8:00 AM - 1:00 PM</div>
+            </div>
+        </div>
+        <div class="special-notice">
+            🚶‍♂️ WALK-INS ONLY • TWO BARBERS • NO WAITING 🚶‍♂️
+        </div>
+    </div>
+
+    <div class="section contact" id="contact">
+        <h2 class="section-title">Visit Us Today</h2>
+        <div class="contact-info">
+            <div class="contact-item">
+                <div class="contact-icon">📍</div>
+                <div class="contact-label">Location</div>
+                <div class="contact-detail">
+                    <a href="https://maps.google.com/?q=670+Bridgeton+Pike,+Mantua,+NJ+08051" target="_blank">
+                        670 Bridgeton Pike<br>
+                        (Across from Tractor Supply)<br>
+                        Mantua, NJ 08051
+                    </a>
+                </div>
+            </div>
+            <div class="contact-item">
+                <div class="contact-icon">📞</div>
+                <div class="contact-label">Call Us</div>
+                <div class="contact-detail">
+                    <a href="tel:8564151052">(856) 415-1052</a><br>
+                    <a href="tel:8564682626">(856) 468-2626</a>
+                </div>
+            </div>
+            <div class="contact-item">
+                <div class="contact-icon">📅</div>
+                <div class="contact-label">Appointments</div>
+                <div class="contact-detail">
+                    Joe Denisi<br>
+                    <a href="tel:8566285791">(856) 628-5791</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <p><span class="barber-pole">💈</span> © 2024 Gino's Family Barber Shop. All rights reserved. <span class="barber-pole">💈</span></p>
+        <p style="margin-top: 0.5rem; font-size: 0.9rem;">670 Bridgeton Pike, Mantua, NJ 08051 | Cash Only | ATM Available</p>
+    </div>
+</body>
+</html>
